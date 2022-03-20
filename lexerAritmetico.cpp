@@ -1,4 +1,4 @@
-#include "lexerAritmetico.h"
+﻿#include "lexerAritmetico.h"
 
 lexerAritmetico::lexerAritmetico(string fuente)
 {
@@ -405,7 +405,7 @@ int lexerAritmetico::sigSimbolo()
 }
 char lexerAritmetico::sigCaracter()
 {
-	if (terminado()) return 0;  //ACAJNSKAJSNAKJ
+	if (terminado()) return '$';  //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
 
 	return fuente[ind++];
 }
@@ -441,6 +441,6 @@ bool lexerAritmetico::esEspacio(char c)
 }
 void lexerAritmetico::retroceso()
 {
-	if (c != '$') ind--;   //ACAJNSKAJSNAKJ
+	if (c != '$') ind--;   //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
 	continua = false;
 }

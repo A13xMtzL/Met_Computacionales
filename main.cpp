@@ -76,15 +76,7 @@ int main() {
 
 
 
-
-
-
-
-			//---------------------------------------------------------------------------
-
-		 //Apertura del archivo y lectura de los elementos
-
-
+	//Apertura del archivo y lectura de los elementos
 
 	ifstream archivo("input1.txt");
 	//archivo.open("input1.txt", ios::in);
@@ -101,12 +93,9 @@ int main() {
 		archivo.close();
 	}
 
-
-
-
 	//--------------------------------------------------------------------------- NUEVO ARCHIVO NOMÁS DE PRUBEA-------------------------------------------- --------------------------------- 
 
-	lexerAritmetico* anali_lexer=new lexerAritmetico();
+	lexerAritmetico* anali_lexer = new lexerAritmetico();
 
 	string palabras = ("b = 7"
 
@@ -119,22 +108,19 @@ int main() {
 	anali_lexer->entrada(texto);
 
 
-
-
-
 	cout << "\tToken\t\t|Type" << endl;
+	cout << "-------------------------------------------------------------" << endl;
 
-
-	while (!anali_lexer->simbolo.empty())
+	while (anali_lexer->simbolo.compare("$") != 0)
 	{
 		anali_lexer->sigSimbolo();
 
-		cout << anali_lexer->simbolo << "\t\t" << "|" << anali_lexer->tipoAcad(anali_lexer->tipo) << endl;
-		//cout << "-------------------------------------------------------------" << endl;
+		cout << "\t" << anali_lexer->simbolo << "\t\t" << "|" << anali_lexer->tipoAcad(anali_lexer->tipo) << endl;
+		cout << "-------------------------------------------------------------" << endl;
 
 
 	}
-	cin.get();
+	system("pause");
 
 
 	return 0;
