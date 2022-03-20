@@ -19,6 +19,8 @@ int main() {
 	//---------------------------------------------------------------------------
 	
 	// Apertura del archivo y lectura de los elementos
+	//Otro comentario feo 
+
 
 	ifstream archivo("input1.txt");
 	//archivo.open("input1.txt", ios::in);

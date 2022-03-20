@@ -4,6 +4,8 @@
 lexerAritmetico::lexerAritmetico() {
 
 	//ind = 0;
+	//
+	//
 }
 
 lexerAritmetico::lexerAritmetico(string fuente) {
@@ -194,7 +196,7 @@ int lexerAritmetico::sigSimbolo() {
 				Aceptacion(8);
 			}
 			else if (sig_char == '=') {
-				Aceptacion(10);
+				Aceptacion(10*);
 			}
 			break;
 
