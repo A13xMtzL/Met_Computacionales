@@ -141,19 +141,19 @@ int lexer::sigSimbolo()
 			}
 			if (c == '*' || c == '/')aceptacion(6);
 			if (c == '<' || c == '>') {
-				estado = 5;
+				estado = 5; // 5
 				simbolo += c;
 			}
 			if (c == '|') {
-				estado = 6;
+				estado = 6; // 6
 				simbolo += c;
 			}
 			if (c == '&') {
-				estado = 7;
+				estado = 7; // 7
 				simbolo += c;
 			}
 			if (c == '!') {
-				estado = 8;
+				estado = 8; // 8
 				simbolo += c;
 			}
 			//if (c == ';')aceptacion(12);
@@ -164,7 +164,7 @@ int lexer::sigSimbolo()
 			//if (c == '{') aceptacion(16);
 			//if (c == '}') aceptacion(17);
 			if (c == '=') {
-				estado = 9;
+				estado = 9; // este se queda 9
 				simbolo += c;
 			}
 			//else {
@@ -234,22 +234,29 @@ int lexer::sigSimbolo()
 				aceptacion(2);
 			}
 			break;
-		case 5:
-			if (c != '=') {
-				aceptacion(7);
-			}
-			else if (c == '=') {
-				aceptacion(7);
-			}
-			break;
-		case 6:
-			if (c != '|') {
-				aceptacion(23);
-			}
-			else if (c == '|') {
-				aceptacion(8);
-			}
-			break;
+		//case 5:
+		//	if (c != '=') {
+		//		aceptacion(7); // 7
+		//	}
+		//	else if (c == '=') {
+		//		aceptacion(7); // 7
+		//	}
+		//	break;
+
+
+
+		//case 6:
+		//	if (c != '|') {
+		//		aceptacion(23); // este no
+		//	}
+		//	else if (c == '|') {
+		//		aceptacion(8); // 8
+		//	}
+		//	break;
+
+
+
+
 		//case 7:
 		//	if (c != '&') {
 		//		aceptacion(23);
@@ -260,15 +267,20 @@ int lexer::sigSimbolo()
 		//	break;
 
 
-		case 7: // 8
-			if (c != '=') {
-				aceptacion(10);
-			}
-			else if (c == '=') {
+		case 8:
+			//if (c != '=') {
+			//	aceptacion(10);
+			//}
+			//else if (c == '=') {
+			//	aceptacion(11);
+			//}
+
+			if (c == '=') {
 				aceptacion(11);
 			}
+
 			break;
-		case 8:	//----------->	Si pasa algo feo, fue esto
+		case 9:	//----------->	Si pasa algo feo, fue esto
 			if (c != '=') {
 				aceptacion(18);		
 			}
@@ -301,6 +313,10 @@ int lexer::sigSimbolo()
 	case 5:
 		tipo = TipoSimbolo::Suma;
 		break;
+
+	//case 5:
+	//	tipo = TipoSimbolo::Suma;
+	//	break;
 	case 6:
 		tipo = TipoSimbolo::Op_Multiplicacion;
 		break;
