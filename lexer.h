@@ -37,6 +37,7 @@ public:
 	//static const int LLAVE1 = 16;
 	//static const int LLAVE2 = 17;
 	static const int IGUAL = 12; //18
+	static const int POTENCIA = 13; //18
 	//static const int IF = 19;
 	//static const int WHILE = 20;
 	//static const int RETURN = 21;

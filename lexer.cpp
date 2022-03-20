@@ -51,10 +51,6 @@ string lexer::tipoAcad(int tipo)
 		cad = "Operador de Division";// este es nuevo, para reordenar 
 		break;
 
-
-
-
-
 		//case TipoSimbolo::OPREL:
 		//	cad = "Operador de Relacion";
 		//	break;
@@ -93,6 +89,11 @@ string lexer::tipoAcad(int tipo)
 		//	break;
 	case TipoSimbolo::IGUAL:
 		cad = "ASSIGMENT";
+		break;
+
+
+	case TipoSimbolo::POTENCIA:
+		cad = "Operador potencia";
 		break;
 		//case TipoSimbolo::IF:
 		//	cad = "Palabra Reservada";
@@ -177,7 +178,7 @@ int lexer::sigSimbolo()
 
 			if (c == '(')aceptacion(10);
 			if (c == ')') aceptacion(11);
-			
+			if (c == '^') aceptacion(13);
 			//if (c == '{') aceptacion(16);
 			//if (c == '}') aceptacion(17);
 			if (c == '=') {
@@ -376,6 +377,10 @@ int lexer::sigSimbolo()
 		//	break;
 	case 12:
 		tipo = TipoSimbolo::IGUAL;
+		break;
+
+	case 13:
+		tipo = TipoSimbolo::POTENCIA;
 		break;
 		//case 19:
 		//	tipo = TipoSimbolo::IF;

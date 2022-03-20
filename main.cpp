@@ -110,11 +110,11 @@ int main() {
 
 	string palabras = ("b = 7"
 
-		"a = 32.4 * (-8.6 - b) / 6.1E-8  "
+		"a = 32.4 * (-8.6 - b) / 6.1E-8   "
 
 		"d = a ^ b int x // Esto es un comentario WHILE");
 
-	string prueba1 = "8 3.5 4.8 = - + ( b = 100 / 10 ) *";
+	string prueba1 = "8 3.5 4.8 = - + ( b = 100 / 10 ) *  ^ ";
 	
 	lexer.entrada(prueba1);
 
