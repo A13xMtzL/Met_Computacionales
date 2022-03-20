@@ -34,6 +34,10 @@ string lexer::tipoAcad(int tipo)
 		cad = "Operador de Suma";
 		break;
 
+	case TipoSimbolo::Resta:
+		cad = "Operador de Resta";
+		break;
+
 		//case TipoSimbolo::Resta:
 		//	cad = "Operador de Resta"; // este es nuevo, para reordenar 
 		//	break;
@@ -43,9 +47,9 @@ string lexer::tipoAcad(int tipo)
 		cad = "MULTIPLICATION";
 		break;
 
-		//case TipoSimbolo::Op_Division:
-		//	cad = "Operador de Division";// este es nuevo, para reordenar 
-		//	break;
+	case TipoSimbolo::Op_Division:
+		cad = "Operador de Division";// este es nuevo, para reordenar 
+		break;
 
 
 
@@ -136,18 +140,24 @@ int lexer::sigSimbolo()
 				estado = 2;
 				simbolo += c;
 			}
-			if (c == '+' || c == '-') {
-				aceptacion(5);
-			}
-			if (c == '*' || c == '/')aceptacion(6);
-			if (c == '<' || c == '>') {
-				estado = 5; // 5
-				simbolo += c;
-			}
-			if (c == '|') {
-				estado = 6; // 6
-				simbolo += c;
-			}
+			//if (c == '+' || c == '-') {
+			//	aceptacion(5);
+			//}
+			//if (c == '*' || c == '/')aceptacion(6);
+			//if (c == '<' || c == '>') {
+			//	estado = 5; // 5
+			//	simbolo += c;
+			//}
+
+
+
+			//if (c == '|') {
+			//	estado = 7; // 6
+			//	simbolo += c;
+			//}
+
+
+
 			//if (c == '&') {
 			//	estado = 7; // 7
 			//	simbolo += c;
@@ -158,9 +168,15 @@ int lexer::sigSimbolo()
 			//}
 			//if (c == ';')aceptacion(12);
 			//if (c == ',')aceptacion(13);
+			if (c == '+')aceptacion(5);
+			if (c == '-')aceptacion(6);
+			if (c == '*')aceptacion(7);
+			if (c == '/') aceptacion(8);
 
-			if (c == '(')aceptacion(14);
-			if (c == ')') aceptacion(15);
+
+
+			if (c == '(')aceptacion(10);
+			if (c == ')') aceptacion(11);
 			
 			//if (c == '{') aceptacion(16);
 			//if (c == '}') aceptacion(17);
@@ -277,16 +293,16 @@ int lexer::sigSimbolo()
 			//}
 
 			if (c == '=') {
-				aceptacion(11);
+				aceptacion(9);
 			}
 
 			break;
 		case 9:	//----------->	Si pasa algo feo, fue esto
 			if (c != '=') {
-				aceptacion(18);		
+				aceptacion(12);		
 			}
 			else if (c == '=') {
-				aceptacion(11);
+				aceptacion(9);
 			}
 			break;
 		}
@@ -315,11 +331,15 @@ int lexer::sigSimbolo()
 		tipo = TipoSimbolo::Suma;
 		break;
 
-	//case 5:
-	//	tipo = TipoSimbolo::Suma;
-	//	break;
 	case 6:
+		tipo = TipoSimbolo::Resta;
+		break;
+	case 7:
 		tipo = TipoSimbolo::Op_Multiplicacion;
+		break;
+
+	case 8:
+		tipo = TipoSimbolo::Op_Division;
 		break;
 		//case 7:
 		//	tipo = TipoSimbolo::OPREL;
@@ -333,7 +353,7 @@ int lexer::sigSimbolo()
 		//case 10:
 		//	tipo = TipoSimbolo::OPNOT;
 		//	break;
-	case 11:
+	case 9:
 		tipo = TipoSimbolo::OPIGUALDAD;
 		break;
 		//case 12:
@@ -342,10 +362,10 @@ int lexer::sigSimbolo()
 		//case 13:
 		//	tipo = TipoSimbolo::COMA;
 		//	break;
-	case 14:
+	case 10:
 		tipo = TipoSimbolo::PARENTESIS_ABRE;
 		break;
-	case 15:
+	case 11:
 		tipo = TipoSimbolo::PARENTESIS_CIERRA;
 		break;
 		//case 16:
@@ -354,7 +374,7 @@ int lexer::sigSimbolo()
 		//case 17:
 		//	tipo = TipoSimbolo::LLAVE2;
 		//	break;
-	case 18:
+	case 12:
 		tipo = TipoSimbolo::IGUAL;
 		break;
 		//case 19:

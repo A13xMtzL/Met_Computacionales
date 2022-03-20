@@ -19,24 +19,24 @@ public:
 	static const int Tipo = 4;
 	static const int Suma = 5;
 
-	//static const int Resta = 6; // este es nuevo, para reordenar 
+	static const int Resta = 6; // este es nuevo, para reordenar 
 
-	static const int Op_Multiplicacion = 6;
+	static const int Op_Multiplicacion = 7;
 
-	//static const int Op_Division = 5;// este es nuevo, para reordenar 
+	static const int Op_Division = 8;// este es nuevo, para reordenar 
 
 	//static const int OPREL = 7;
 	//static const int OPOR = 8;
 	//static const int OPAND = 9;
 	//static const int OPNOT = 10;
-	static const int OPIGUALDAD = 11;
+	static const int OPIGUALDAD = 9; // 11
 	//static const int PUNTO_COMA = 12;
 	//static const int COMA = 13;
-	static const int PARENTESIS_ABRE = 14;
-	static const int PARENTESIS_CIERRA = 15;
+	static const int PARENTESIS_ABRE = 10; // 14
+	static const int PARENTESIS_CIERRA = 11; //15
 	//static const int LLAVE1 = 16;
 	//static const int LLAVE2 = 17;
-	static const int IGUAL = 18;
+	static const int IGUAL = 12; //18
 	//static const int IF = 19;
 	//static const int WHILE = 20;
 	//static const int RETURN = 21;

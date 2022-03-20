@@ -40,7 +40,7 @@ int main() {
 	//		}
 	//	}
 	//
-	//	//------------------------**---------------------------------------------------
+	//	//---------------------------------------------------------------------------
 	//
 	//	lexerAritmetico* analizador_lexico = new lexerAritmetico(); // Se hace la creacion del objeto lexer, que nos permitirá 
 	//																// identificar los tokens del archivo
@@ -81,15 +81,25 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
-
+			//---------------------------------------------------------------------------
+	
+		// Apertura del archivo y lectura de los elementos
+		//Otro comentario feo 
+	
+	
+		//ifstream archivo("input1.txt");
+		////archivo.open("input1.txt", ios::in);
+	
+		//string texto, temporal;
+	
+		//if (!archivo.fail()) {
+		//	while (!archivo.eof()) {
+		//		getline(archivo, temporal);
+		//		texto += temporal + "\n";
+	
+		//		archivo.close();
+		//	}
+		//}
 
 
 
@@ -107,8 +117,6 @@ int main() {
 	string prueba1 = "8 3.5 4.8 = - + ( b = 100 / 10 ) *";
 	
 	lexer.entrada(prueba1);
-
-
 
 
 
