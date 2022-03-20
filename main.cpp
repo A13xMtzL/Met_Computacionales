@@ -13,7 +13,6 @@
 #include "lexerAritmetico.h"
 
 
-#include "lexer.h"
 
 
 
@@ -82,31 +81,32 @@ int main() {
 
 
 			//---------------------------------------------------------------------------
-	
-		// Apertura del archivo y lectura de los elementos
-		//Otro comentario feo 
-	
-	
-		//ifstream archivo("input1.txt");
-		////archivo.open("input1.txt", ios::in);
-	
-		//string texto, temporal;
-	
-		//if (!archivo.fail()) {
-		//	while (!archivo.eof()) {
-		//		getline(archivo, temporal);
-		//		texto += temporal + "\n";
-	
-		//		archivo.close();
-		//	}
-		//}
+
+		 //Apertura del archivo y lectura de los elementos
+
+
+
+	ifstream archivo("input1.txt");
+	//archivo.open("input1.txt", ios::in);
+
+	string texto, temporal;
+
+	if (!archivo.fail()) {
+		while (!archivo.eof()) {
+			getline(archivo, temporal);
+			texto += temporal + "\n";
+
+
+		}
+		archivo.close();
+	}
 
 
 
 
-		//--------------------------------------------------------------------------- NUEVO ARCHIVO NOMÁS DE PRUBEA-------------------------------------------- --------------------------------- 
+	//--------------------------------------------------------------------------- NUEVO ARCHIVO NOMÁS DE PRUBEA-------------------------------------------- --------------------------------- 
 
-	lexer lexer;
+	lexerAritmetico* anali_lexer=new lexerAritmetico();
 
 	string palabras = ("b = 7"
 
@@ -115,20 +115,24 @@ int main() {
 		"d = a ^ b int x // Esto es un comentario WHILE");
 
 	string prueba1 = "8 3.5 4.8 = - + ( b = 100 / 10 ) *  ^ ";
-	
-	lexer.entrada(prueba1);
+
+	anali_lexer->entrada(texto);
 
 
 
 
 
-	cout << "Resultado del analisis lexico " << endl << endl;
-	cout << "Simbolo\t\tTipo" << endl;
-	while (lexer.simbolo.compare("$") != 0)
+	cout << "\tToken\t\t|Type" << endl;
+
+
+	while (!anali_lexer->simbolo.empty())
 	{
-		lexer.sigSimbolo();
+		anali_lexer->sigSimbolo();
 
-		cout << lexer.simbolo << "\t\t" << lexer.tipoAcad(lexer.tipo) << endl;
+		cout << anali_lexer->simbolo << "\t\t" << "|" << anali_lexer->tipoAcad(anali_lexer->tipo) << endl;
+		//cout << "-------------------------------------------------------------" << endl;
+
+
 	}
 	cin.get();
 
