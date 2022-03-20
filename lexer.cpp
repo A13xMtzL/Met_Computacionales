@@ -34,44 +34,44 @@ string lexer::tipoAcad(int tipo)
 		cad = "Operador de Suma";
 		break;
 
-	//case TipoSimbolo::Resta:
-	//	cad = "Operador de Resta"; // este es nuevo, para reordenar 
-	//	break;
+		//case TipoSimbolo::Resta:
+		//	cad = "Operador de Resta"; // este es nuevo, para reordenar 
+		//	break;
 
 
 	case TipoSimbolo::Op_Multiplicacion:
 		cad = "MULTIPLICATION";
 		break;
 
-	//case TipoSimbolo::Op_Division:
-	//	cad = "Operador de Division";// este es nuevo, para reordenar 
-	//	break;
+		//case TipoSimbolo::Op_Division:
+		//	cad = "Operador de Division";// este es nuevo, para reordenar 
+		//	break;
 
 
 
 
 
-	//case TipoSimbolo::OPREL:
-	//	cad = "Operador de Relacion";
-	//	break;
-	//case TipoSimbolo::OPOR:
-	//	cad = "Operador OR";
-	//	break;
-	//case TipoSimbolo::OPAND:
-	//	cad = "Operador AND";
-	//	break;
-	//case TipoSimbolo::OPNOT:
-	//	cad = "Operador NOT";
-	//	break;
+		//case TipoSimbolo::OPREL:
+		//	cad = "Operador de Relacion";
+		//	break;
+		//case TipoSimbolo::OPOR:
+		//	cad = "Operador OR";
+		//	break;
+		//case TipoSimbolo::OPAND:
+		//	cad = "Operador AND";
+		//	break;
+		//case TipoSimbolo::OPNOT:
+		//	cad = "Operador NOT";
+		//	break;
 	case TipoSimbolo::OPIGUALDAD:
 		cad = "ASSIGMENT";
 		break;
-	//case TipoSimbolo::PUNTO_COMA:
-	//	cad = "Punto y Coma";
-	//	break;
-	//case TipoSimbolo::COMA:
-	//	cad = "Coma";
-	//	break;
+		//case TipoSimbolo::PUNTO_COMA:
+		//	cad = "Punto y Coma";
+		//	break;
+		//case TipoSimbolo::COMA:
+		//	cad = "Coma";
+		//	break;
 	case TipoSimbolo::PARENTESIS_ABRE:
 		cad = "LEFT PARENTHESIS";
 		break;
@@ -81,30 +81,30 @@ string lexer::tipoAcad(int tipo)
 
 
 
-	//case TipoSimbolo::LLAVE1:
-	//	cad = "Llave";
-	//	break;
-	//case TipoSimbolo::LLAVE2:
-	//	cad = "Llave";
-	//	break;
+		//case TipoSimbolo::LLAVE1:
+		//	cad = "Llave";
+		//	break;
+		//case TipoSimbolo::LLAVE2:
+		//	cad = "Llave";
+		//	break;
 	case TipoSimbolo::IGUAL:
-		cad = "Operador de Asignacion";
+		cad = "ASSIGMENT";
 		break;
-	//case TipoSimbolo::IF:
-	//	cad = "Palabra Reservada";
-	//	break;
-	//case TipoSimbolo::WHILE:
-	//	cad = "Palabra Reservada";
-	//	break;
-	//case TipoSimbolo::RETURN:
-	//	cad = "Palabra Reservada";
-	//	break;
-	//case TipoSimbolo::ELSE:
-	//	cad = "Palabra Reservada";
-	//	break;
-	//case TipoSimbolo::PESOS:
-	//	cad = "";
-		//break;
+		//case TipoSimbolo::IF:
+		//	cad = "Palabra Reservada";
+		//	break;
+		//case TipoSimbolo::WHILE:
+		//	cad = "Palabra Reservada";
+		//	break;
+		//case TipoSimbolo::RETURN:
+		//	cad = "Palabra Reservada";
+		//	break;
+		//case TipoSimbolo::ELSE:
+		//	cad = "Palabra Reservada";
+		//	break;
+		//case TipoSimbolo::PESOS:
+		//	cad = "";
+			//break;
 	}
 
 	return cad;
@@ -123,7 +123,7 @@ int lexer::sigSimbolo()
 
 	while (continua)
 	{
-		c= sigCaracter();
+		c = sigCaracter();
 
 		switch (estado)
 		{
@@ -135,7 +135,7 @@ int lexer::sigSimbolo()
 			if (esDigito(c)) {
 				estado = 2;
 				simbolo += c;
-			 }
+			}
 			if (c == '+' || c == '-') {
 				aceptacion(5);
 			}
@@ -156,49 +156,55 @@ int lexer::sigSimbolo()
 				estado = 8;
 				simbolo += c;
 			}
-			if (c == ';')aceptacion(12);
-			if (c == ',')aceptacion(13);
+			//if (c == ';')aceptacion(12);
+			//if (c == ',')aceptacion(13);
 			if (c == '(')aceptacion(14);
 			if (c == ')') aceptacion(15);
-			if (c == '{') aceptacion(16);
-			if (c == '}') aceptacion(17);
+			
+			//if (c == '{') aceptacion(16);
+			//if (c == '}') aceptacion(17);
 			if (c == '=') {
 				estado = 9;
 				simbolo += c;
 			}
-			else {
-				if (c == '$')aceptacion(23);
-			}
+			//else {
+			//	if (c == '$')aceptacion(23);
+			//}
 			break;
 		case 1:
 			if (esLetra(c) || esDigito(c)) {
 				estado = 1;
 				simbolo += c;
-				
+
 			}
-			else if(!esLetra(c)|| !esDigito(c)) {
-				aux = simbolo;
-				if (aux == "int" || aux == "float" || aux == "void") {
-					aceptacion(4);
-				}
-				else {
-					aceptacion(0);
-				}
-				if (aux == "if") {
-					aceptacion(19);
-				}
-				if (aux == "while") {
-					aceptacion(20);
-				}
-				if (aux == "return") {
-					aceptacion(21);
-				}
-				if (aux == "else") {
-					aceptacion(22);
-				}
-				
-				
+
+			else {
+				aceptacion(0);
 			}
+			
+			//else if (!esLetra(c) || !esDigito(c)) {
+			//	aux = simbolo;
+			//	if (aux == "int" || aux == "float" || aux == "void") {
+			//		aceptacion(4);
+			//	}
+			//	else {
+			//		aceptacion(0);
+			//	}
+			//	if (aux == "if") {
+			//		aceptacion(19);
+			//	}
+			//	if (aux == "while") {
+			//		aceptacion(20);
+			//	}
+			//	if (aux == "return") {
+			//		aceptacion(21);
+			//	}
+			//	if (aux == "else") {
+			//		aceptacion(22);
+			//	}
+
+
+			//}
 			break;
 		case 2:
 			if (esDigito(c)) {
@@ -209,7 +215,7 @@ int lexer::sigSimbolo()
 				estado = 3;
 				simbolo += c;
 			}
-			else if (c!= '.' || !esDigito(c)) {
+			else if (c != '.' || !esDigito(c)) {
 				aceptacion(1);
 			}
 			break;
@@ -232,7 +238,7 @@ int lexer::sigSimbolo()
 			if (c != '=') {
 				aceptacion(7);
 			}
-			else if(c== '=') {
+			else if (c == '=') {
 				aceptacion(7);
 			}
 			break;
@@ -244,15 +250,17 @@ int lexer::sigSimbolo()
 				aceptacion(8);
 			}
 			break;
-		case 7:
-			if (c != '&') {
-				aceptacion(23);
-			}
-			else if (c == '&') {
-				aceptacion(9);
-			}
-			break;
-		case 8:
+		//case 7:
+		//	if (c != '&') {
+		//		aceptacion(23);
+		//	}
+		//	else if (c == '&') {
+		//		aceptacion(9);
+		//	}
+		//	break;
+
+
+		case 7: // 8
 			if (c != '=') {
 				aceptacion(10);
 			}
@@ -260,15 +268,15 @@ int lexer::sigSimbolo()
 				aceptacion(11);
 			}
 			break;
-		case 9:
+		case 8:	//----------->	Si pasa algo feo, fue esto
 			if (c != '=') {
-				aceptacion(18);
+				aceptacion(18);		
 			}
 			else if (c == '=') {
 				aceptacion(11);
 			}
 			break;
-		}	
+		}
 	}
 	switch (estado)
 	{
@@ -296,57 +304,57 @@ int lexer::sigSimbolo()
 	case 6:
 		tipo = TipoSimbolo::Op_Multiplicacion;
 		break;
-	//case 7:
-	//	tipo = TipoSimbolo::OPREL;
-	//	break;
-	//case 8:
-	//	tipo = TipoSimbolo::OPOR;
-	//	break;
-	//case 9:
-	//	tipo = TipoSimbolo::OPAND;
-	//	break;
-	//case 10:
-	//	tipo = TipoSimbolo::OPNOT;
-	//	break;
+		//case 7:
+		//	tipo = TipoSimbolo::OPREL;
+		//	break;
+		//case 8:
+		//	tipo = TipoSimbolo::OPOR;
+		//	break;
+		//case 9:
+		//	tipo = TipoSimbolo::OPAND;
+		//	break;
+		//case 10:
+		//	tipo = TipoSimbolo::OPNOT;
+		//	break;
 	case 11:
 		tipo = TipoSimbolo::OPIGUALDAD;
 		break;
-	//case 12:
-	//	tipo = TipoSimbolo::PUNTO_COMA;
-	//	break;
-	//case 13:
-	//	tipo = TipoSimbolo::COMA;
-	//	break;
+		//case 12:
+		//	tipo = TipoSimbolo::PUNTO_COMA;
+		//	break;
+		//case 13:
+		//	tipo = TipoSimbolo::COMA;
+		//	break;
 	case 14:
 		tipo = TipoSimbolo::PARENTESIS_ABRE;
 		break;
 	case 15:
 		tipo = TipoSimbolo::PARENTESIS_CIERRA;
 		break;
-	//case 16:
-	//	tipo = TipoSimbolo::LLAVE1;
-	//	break;
-	//case 17:
-	//	tipo = TipoSimbolo::LLAVE2;
-	//	break;
+		//case 16:
+		//	tipo = TipoSimbolo::LLAVE1;
+		//	break;
+		//case 17:
+		//	tipo = TipoSimbolo::LLAVE2;
+		//	break;
 	case 18:
 		tipo = TipoSimbolo::IGUAL;
 		break;
-	//case 19:
-	//	tipo = TipoSimbolo::IF;
-	//	break;
-	//case 20:
-	//	tipo = TipoSimbolo::WHILE;
-	//	break;
-	//case 21:
-	//	tipo = TipoSimbolo::RETURN;
-	//	break;
-	//case 22:
-	//	tipo = TipoSimbolo::ELSE;
-	//	break;
-	//case 23:
-	//	tipo = TipoSimbolo::PESOS;
-	//	break;
+		//case 19:
+		//	tipo = TipoSimbolo::IF;
+		//	break;
+		//case 20:
+		//	tipo = TipoSimbolo::WHILE;
+		//	break;
+		//case 21:
+		//	tipo = TipoSimbolo::RETURN;
+		//	break;
+		//case 22:
+		//	tipo = TipoSimbolo::ELSE;
+		//	break;
+		//case 23:
+		//	tipo = TipoSimbolo::PESOS;
+		//	break;
 	default:
 		tipo = TipoSimbolo::Error;
 		break;

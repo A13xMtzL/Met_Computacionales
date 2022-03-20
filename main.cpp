@@ -98,7 +98,7 @@ int main() {
 
 	lexer lexer;
 
-	lexer.entrada("8 3.5 4.8 = - + ( b = 100 / 10) *");
+	lexer.entrada("8 3.5 4.8 = - + ( b = 100 / 10 ) *");
 
 
 
