@@ -148,16 +148,17 @@ int lexer::sigSimbolo()
 				estado = 6; // 6
 				simbolo += c;
 			}
-			if (c == '&') {
-				estado = 7; // 7
-				simbolo += c;
-			}
-			if (c == '!') {
-				estado = 8; // 8
-				simbolo += c;
-			}
+			//if (c == '&') {
+			//	estado = 7; // 7
+			//	simbolo += c;
+			//}
+			//if (c == '!') {
+			//	estado = 8; // 8
+			//	simbolo += c;
+			//}
 			//if (c == ';')aceptacion(12);
 			//if (c == ',')aceptacion(13);
+
 			if (c == '(')aceptacion(14);
 			if (c == ')') aceptacion(15);
 			

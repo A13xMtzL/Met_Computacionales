@@ -21,7 +21,7 @@ public:
 
 	//static const int Resta = 6; // este es nuevo, para reordenar 
 
-	static const int Op_Multiplicacion = 6; // 6
+	static const int Op_Multiplicacion = 6;
 
 	//static const int Op_Division = 5;// este es nuevo, para reordenar 
 
