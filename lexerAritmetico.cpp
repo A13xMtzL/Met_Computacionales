@@ -1,19 +1,22 @@
 ﻿#include "lexerAritmetico.h"
 
-lexerAritmetico::lexerAritmetico(string fuente)
-{
-	ind = 0;
+lexerAritmetico::lexerAritmetico(string fuente){
+	
+	indice = 0;
 	this->fuente = fuente;
 }
 
-lexerAritmetico::lexerAritmetico()
-{
-	ind = 0;
+lexerAritmetico::lexerAritmetico() {
+	
+	indice = 0; // Se inicializa el índice 
 }
-string lexerAritmetico::tipoAcad(int tipo)
-{
+string lexerAritmetico::tipoAcad(int tipo){
+	
 	string cad = "";
-	switch (tipo)
+	switch (tipo) // Inicio del switch case en donde se declaran los mensajes para
+				 // monstrar en consola
+
+
 	{
 	case TipoSimbolo::Identificador:
 		cad = "VARIABLE";
@@ -114,94 +117,103 @@ string lexerAritmetico::tipoAcad(int tipo)
 
 	return cad;
 }
-void lexerAritmetico::entrada(string fuente)
-{
-	ind = 0;
+void lexerAritmetico::entrada(string fuente){ // Recibe el string a leer
+	
+	indice = 0;
 	this->fuente = fuente;
 }
-int lexerAritmetico::sigSimbolo()
-{
+int lexerAritmetico::sigSimbolo(){
+	
 	estado = 0;
 	continua = true;
 	simbolo = "";
-	cont = 0;
+	//cont = 0;
 
 	while (continua)
 	{
-		c = Siguiente_Caracter();
+		caracter = Siguiente_Caracter();
 
 		switch (estado)
 		{
+
+		//	Aquí se empiezan a identificar los tipos de tokens
+
 		case 0:
-			if (esLetra(c)) {
+			if (Es_Letra(caracter)) {
 				estado = 1;
-				simbolo += c;
+				simbolo += caracter;
 			}
-			if (esDigito(c)) {
+			if (Es_Digito(caracter)) {
 				estado = 2;
-				simbolo += c;
+				simbolo += caracter;
 			}
-			//if (c == '+' || c == '-') {
+			//if (caracter == '+' || caracter == '-') {
 			//	Aceptacion(5);
 			//}
-			//if (c == '*' || c == '/')Aceptacion(6);
-			//if (c == '<' || c == '>') {
+			//if (caracter == '*' || caracter == '/')Aceptacion(6);
+			//if (caracter == '<' || caracter == '>') {
 			//	estado = 5; // 5
-			//	simbolo += c;
+			//	simbolo += caracter;
 			//}
 
 
 
-			//if (c == '|') {
+			//if (caracter == '|') {
 			//	estado = 7; // 6
-			//	simbolo += c;
+			//	simbolo += caracter;
 			//}
 
 
 
-			//if (c == '&') {
+			//if (caracter == '&') {
 			//	estado = 7; // 7
-			//	simbolo += c;
+			//	simbolo += caracter;
 			//}
-			//if (c == '!') {
+			//if (caracter == '!') {
 			//	estado = 8; // 8
-			//	simbolo += c;
+			//	simbolo += caracter;
 			//}
-			//if (c == ';')Aceptacion(12);
-			//if (c == ',')Aceptacion(13);
-			if (c == '+')Aceptacion(5);
-			if (c == '-')Aceptacion(6);
-			if (c == '*')Aceptacion(7);
-			if (c == '/') Aceptacion(8);
+			//if (caracter == ';')Aceptacion(12);
+			//if (caracter == ',')Aceptacion(13);
 
 
 
-			if (c == '(')Aceptacion(10);
-			if (c == ')') Aceptacion(11);
-			if (c == '^') Aceptacion(13);
-			//if (c == '{') Aceptacion(16);
-			//if (c == '}') Aceptacion(17);
-			if (c == '=') {
+
+			if (caracter == '+')Aceptacion(5);
+			if (caracter == '-')Aceptacion(6);
+			if (caracter == '*')Aceptacion(7);
+			if (caracter == '/') Aceptacion(8);
+
+
+
+			if (caracter == '(')Aceptacion(10);
+			if (caracter == ')') Aceptacion(11);
+			if (caracter == '^') Aceptacion(13);
+			//if (caracter == '{') Aceptacion(16);
+			//if (caracter == '}') Aceptacion(17);
+			if (caracter == '=') {
 				estado = 9; // este se queda 9
-				simbolo += c;
+				simbolo += caracter;
 			}
 			//else {
-			//	if (c == '$')Aceptacion(23);
+			//	if (caracter == '$')Aceptacion(23);
 			//}
+			//if (caracter == "//") Aceptacion(13);
+
 			break;
 		case 1:
-			if (esLetra(c) || esDigito(c)) {
+			if (Es_Letra(caracter) || Es_Digito(caracter)) {
 				estado = 1;
-				simbolo += c;
+				simbolo += caracter;
 
 			}
 
 			else {
 				Aceptacion(0);
 			}
-			
-			//else if (!esLetra(c) || !esDigito(c)) {
-			//	aux = simbolo;
+
+			//else if (!Es_Letra(caracter) || !Es_Digito(caracter)) {
+			//	**
 			//	if (aux == "int" || aux == "float" || aux == "void") {
 			//		Aceptacion(4);
 			//	}
@@ -224,85 +236,91 @@ int lexerAritmetico::sigSimbolo()
 
 			//}
 			break;
+
+
+			//	Case para identificar numeros reales 
+
 		case 2:
-			if (esDigito(c)) {
+			if (Es_Digito(caracter)) {
 				estado = 2;
-				simbolo += c;
+				simbolo += caracter;
 			}
-			else if (c == '.') {
+			else if (caracter == '.') {
 				estado = 3;
-				simbolo += c;
+				simbolo += caracter;
 			}
-			else if (c != '.' || !esDigito(c)) {
+			else if (caracter != '.' || !Es_Digito(caracter)) {
 				Aceptacion(1);
 			}
 			break;
+
+
 		case 3:
-			if (esDigito(c)) {
+			if (Es_Digito(caracter)) {
 				estado = 4;
-				simbolo += c;
+				simbolo += caracter;
 			}
 			break;
 		case 4:
-			if (esDigito(c)) {
+			if (Es_Digito(caracter)) {
 				estado = 4;
-				simbolo += c;
+				simbolo += caracter;
 			}
 			else {
 				Aceptacion(2);
 			}
 			break;
-		//case 5:
-		//	if (c != '=') {
-		//		Aceptacion(7); // 7
-		//	}
-		//	else if (c == '=') {
-		//		Aceptacion(7); // 7
-		//	}
-		//	break;
+			//case 5:
+			//	if (caracter != '=') {
+			//		Aceptacion(7); // 7
+			//	}
+			//	else if (caracter == '=') {
+			//		Aceptacion(7); // 7
+			//	}
+			//	break;
 
 
 
-		//case 6:
-		//	if (c != '|') {
-		//		Aceptacion(23); // este no
-		//	}
-		//	else if (c == '|') {
-		//		Aceptacion(8); // 8
-		//	}
-		//	break;
+			//case 6:
+			//	if (caracter != '|') {
+			//		Aceptacion(23); // este no
+			//	}
+			//	else if (caracter == '|') {
+			//		Aceptacion(8); // 8
+			//	}
+			//	break;
 
 
 
 
-		//case 7:
-		//	if (c != '&') {
-		//		Aceptacion(23);
-		//	}
-		//	else if (c == '&') {
-		//		Aceptacion(9);
-		//	}
-		//	break;
+			//case 7:
+			//	if (caracter != '&') {
+			//		Aceptacion(23);
+			//	}
+			//	else if (caracter == '&') {
+			//		Aceptacion(9);
+			//	}
+			//	break;
 
 
 		case 8:
-			//if (c != '=') {
+			//if (caracter != '=') {
 			//	Aceptacion(10);
 			//}
-			//else if (c == '=') {
+			//else if (caracter == '=') {
 			//	Aceptacion(11);
 			//}
 
-			if (c == '=') {
+			if (caracter == '=') {
 				Aceptacion(9);
 			}
 
 			break;
 		case 9:	//----------->	Si pasa algo feo, fue esto
-			if (c != '=') {
-				Aceptacion(12);		
+			if (caracter != '=') {
+				Aceptacion(12);
 			}
-			else if (c == '=') {
+			else if (caracter == '=') {
 				Aceptacion(9);
 			}
 			break;
@@ -382,6 +400,9 @@ int lexerAritmetico::sigSimbolo()
 	case 13:
 		tipo = TipoSimbolo::Potencia;
 		break;
+	case 14:
+		tipo = TipoSimbolo::Comentario;
+		break;
 		//case 19:
 		//	tipo = TipoSimbolo::IF;
 		//	break;
@@ -403,44 +424,43 @@ int lexerAritmetico::sigSimbolo()
 	}
 	return tipo;
 }
-char lexerAritmetico::Siguiente_Caracter()
-{
-	if (terminado()) return '$';  //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
+char lexerAritmetico::Siguiente_Caracter(){
+	
+	if (terminado()) return '$';  //  FIN DEL ARCHIVO
 
-	return fuente[ind++];
+	return fuente[indice++];
 }
-void lexerAritmetico::Siguiente_Estado(int estado)
-{
+void lexerAritmetico::Siguiente_Estado(int estado){
+	
 	this->estado = estado;
 	if (estado != 0) {
-		simbolo += c;
+		simbolo += caracter;
 	}
 }
-void lexerAritmetico::Aceptacion(int estado)
-{
+void lexerAritmetico::Aceptacion(int estado){ // Estado en el que se encuentra el token
+	
 	Siguiente_Estado(estado);
 	continua = false;
 }
-bool lexerAritmetico::terminado()
-{
-	return ind >= fuente.length();
+bool lexerAritmetico::terminado(){ // Verifica la medida del archivo
+	
+	return indice >= fuente.length();
 
 }
-bool lexerAritmetico::esLetra(char c)
-{
+bool lexerAritmetico::Es_Letra(char c){ // Identifica si el char actual es una letra
+	
 	return c >= 'a' && c <= 'z' || c == '_' || c >= 'A' && c <= 'Z';
 }
-bool lexerAritmetico::esDigito(char c)
-{
+bool lexerAritmetico::Es_Digito(char c){ // Identifica si se trata de un numero
+	
 	return isdigit(c);
-
 }
-bool lexerAritmetico::esEspacio(char c)
-{
-	return c == ' ' || c == '\t';
+bool lexerAritmetico::Es_Espacio(char c){ // Identifica si el char actual se	 trata de	
+										// Un espacio en blanco
+	return c == ' ' /*|| caracter == '\t'*/;
 }
-void lexerAritmetico::Retroceso()
-{
-	if (c != '$') ind--;   //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
+void lexerAritmetico::Retroceso(){
+	
+	if (caracter != '$') indice--;   //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
 	continua = false;
 }

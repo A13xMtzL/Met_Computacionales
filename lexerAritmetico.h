@@ -1,13 +1,48 @@
 #pragma once
-#ifndef _LEXER
-#define _LEXER
-
 
 #include <iostream>
 #include <string>
 
 
 using namespace std;
+
+class lexerAritmetico {
+private:
+	bool continua;
+	char caracter;
+
+	string fuente;
+	int indice;
+	int estado;
+
+	bool Es_Letra(char c); 	// 'c' hace referencia a caracter
+
+	bool Es_Digito(char c);
+	bool Es_Espacio(char c);
+
+	char Siguiente_Caracter();
+	void Siguiente_Estado(int estado);
+
+	void Aceptacion(int estado);
+	void Retroceso();
+
+public:
+	string simbolo;
+	int tipo;
+	string aux;
+
+	lexerAritmetico(string fuente);
+	lexerAritmetico();
+
+	void entrada(string fuente);
+	string tipoAcad(int tipo);
+
+	int sigSimbolo();
+	bool terminado();
+
+};
+
+//----------------------------------------------------------
 
 class TipoSimbolo {
 public:
@@ -50,40 +85,3 @@ public:
 	//static const int PESOS = 23;
 };
 
-class lexerAritmetico {
-private:
-	string fuente;
-	int ind;
-	bool continua;
-	char c;
-	int estado;
-	int cont;
-
-	bool esLetra(char c);
-	bool esDigito(char c);
-	bool esEspacio(char c);
-	
-	char Siguiente_Caracter();
-	void Siguiente_Estado(int estado);
-	
-	void Aceptacion(int estado);
-	void Retroceso();
-
-public:
-	string simbolo;
-	int tipo;
-	string aux;
-
-	lexerAritmetico(string fuente);
-	lexerAritmetico();
-
-	void entrada(string fuente);
-	string tipoAcad(int tipo);
-
-	int sigSimbolo();
-	bool terminado();
-
-};
-
-
-#endif

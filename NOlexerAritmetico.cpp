@@ -3,14 +3,14 @@
 ////	Constructores:
 //lexerAritmetico::lexerAritmetico() {
 //
-//	//ind = 0;
+//	//indice = 0;
 //	//
 //	//
 //}
 //
 //lexerAritmetico::lexerAritmetico(string fuente) {
 //
-//	ind = 0;
+//	indice = 0;
 //	this->fuente = fuente;
 //}
 //
@@ -83,7 +83,7 @@
 //}
 //void lexerAritmetico::entrada(string fuente) {
 //
-//	//ind = 0;
+//	//indice = 0;
 //	this->fuente = fuente;
 //}
 //int lexerAritmetico::sigSimbolo() {
@@ -275,7 +275,7 @@
 //{
 //	if (terminado()) return '$';
 //
-//	return fuente[ind++];
+//	return fuente[indice++];
 //}
 //void lexerAritmetico::Siguiente_Estado(int estado)
 //{
@@ -291,24 +291,24 @@
 //}
 //bool lexerAritmetico::terminado()
 //{
-//	return ind >= fuente.length();
+//	return indice >= fuente.length();
 //
 //}
-//bool lexerAritmetico::EsLetra(char c)
+//bool lexerAritmetico::EsLetra(char caracter)
 //{
-//	return c >= 'a' && c <= 'z' || c == '_' || c >= 'A' && c <= 'Z';
+//	return caracter >= 'a' && caracter <= 'z' || caracter == '_' || caracter >= 'A' && caracter <= 'Z';
 //}
-//bool lexerAritmetico::EsDigito(char c)
+//bool lexerAritmetico::EsDigito(char caracter)
 //{
-//	return isdigit(c);
+//	return isdigit(caracter);
 //
 //}
-//bool lexerAritmetico::Espacio(char c)
+//bool lexerAritmetico::Espacio(char caracter)
 //{
-//	return c == ' ' || c == '\t';
+//	return caracter == ' ' || caracter == '\t';
 //}
 //void lexerAritmetico::retroceso()
 //{
-//	if (sig_char != '$') ind--;
+//	if (sig_char != '$') indice--;
 //	continua = false;
 //}

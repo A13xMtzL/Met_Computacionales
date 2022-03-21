@@ -44,7 +44,7 @@ public:
 class lexerAritmetico {
 public:
 	string fuente;
-	int ind;
+	int indice;
 	bool continua;
 	char sig_char;
 	int estado;
