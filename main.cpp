@@ -105,18 +105,18 @@ int main() {
 
 	string prueba1 = "8 3.5 4.8 = - + ( b = 100 / 10 ) *  ^ ";
 
-	anali_lexer->entrada(texto);
+	anali_lexer->entrada(palabras);
 
 
-	cout << "\tToken\t\t|Type" << endl;
+	cout << "\tToken\t\t|Type\n" << endl;
 	cout << "-------------------------------------------------------------" << endl;
 
 	while (anali_lexer->simbolo.compare("$") != 0)
 	{
 		anali_lexer->sigSimbolo();
 
-		cout << "\t" << anali_lexer->simbolo << "\t\t" << "|" << anali_lexer->tipoAcad(anali_lexer->tipo) << endl;
-		cout << "-------------------------------------------------------------" << endl;
+		cout << "\t" << anali_lexer->simbolo << "\t\t" << "|" << anali_lexer->tipoAcad(anali_lexer->tipo) << "\n";
+		//cout << "-------------------------------------------------------------\n";
 
 
 	}

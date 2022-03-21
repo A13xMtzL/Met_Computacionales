@@ -25,17 +25,17 @@ string lexerAritmetico::tipoAcad(int tipo)
 		cad = "REAL";
 		break;
 	case TipoSimbolo::Cadena:
-		cad = "Cadena";
+		cad = "STRING";
 		break;
 	case TipoSimbolo::Tipo:
-		cad = "Tipo de dato";
+		cad = "Tipo de Dato";
 		break;
 	case TipoSimbolo::Suma:
-		cad = "Operador de Suma";
+		cad = "SUMA";
 		break;
 
 	case TipoSimbolo::Resta:
-		cad = "Operador de Resta";
+		cad = "SUBTRACTION";
 		break;
 
 		//case TipoSimbolo::Resta:
@@ -48,7 +48,7 @@ string lexerAritmetico::tipoAcad(int tipo)
 		break;
 
 	case TipoSimbolo::Op_Division:
-		cad = "Operador de Division";// este es nuevo, para reordenar 
+		cad = "DIVISION";// este es nuevo, para reordenar 
 		break;
 
 		//case TipoSimbolo::OPREL:
@@ -63,7 +63,7 @@ string lexerAritmetico::tipoAcad(int tipo)
 		//case TipoSimbolo::OPNOT:
 		//	cad = "Operador NOT";
 		//	break;
-	case TipoSimbolo::OPIGUALDAD:
+	case TipoSimbolo::Op_Igualdad:
 		cad = "ASSIGMENT";
 		break;
 		//case TipoSimbolo::PUNTO_COMA:
@@ -72,10 +72,10 @@ string lexerAritmetico::tipoAcad(int tipo)
 		//case TipoSimbolo::COMA:
 		//	cad = "Coma";
 		//	break;
-	case TipoSimbolo::PARENTESIS_ABRE:
+	case TipoSimbolo::Parentesis_Abre:
 		cad = "LEFT PARENTHESIS";
 		break;
-	case TipoSimbolo::PARENTESIS_CIERRA:
+	case TipoSimbolo::Parentesis_Cierra:
 		cad = "RIGHT PARENTHESIS";
 		break;
 
@@ -87,13 +87,13 @@ string lexerAritmetico::tipoAcad(int tipo)
 		//case TipoSimbolo::LLAVE2:
 		//	cad = "Llave";
 		//	break;
-	case TipoSimbolo::IGUAL:
+	case TipoSimbolo::Igual:
 		cad = "ASSIGMENT";
 		break;
 
 
-	case TipoSimbolo::POTENCIA:
-		cad = "Operador potencia";
+	case TipoSimbolo::Potencia:
+		cad = "POWER";
 		break;
 		//case TipoSimbolo::IF:
 		//	cad = "Palabra Reservada";
@@ -128,7 +128,7 @@ int lexerAritmetico::sigSimbolo()
 
 	while (continua)
 	{
-		c = sigCaracter();
+		c = Siguiente_Caracter();
 
 		switch (estado)
 		{
@@ -142,9 +142,9 @@ int lexerAritmetico::sigSimbolo()
 				simbolo += c;
 			}
 			//if (c == '+' || c == '-') {
-			//	aceptacion(5);
+			//	Aceptacion(5);
 			//}
-			//if (c == '*' || c == '/')aceptacion(6);
+			//if (c == '*' || c == '/')Aceptacion(6);
 			//if (c == '<' || c == '>') {
 			//	estado = 5; // 5
 			//	simbolo += c;
@@ -167,26 +167,26 @@ int lexerAritmetico::sigSimbolo()
 			//	estado = 8; // 8
 			//	simbolo += c;
 			//}
-			//if (c == ';')aceptacion(12);
-			//if (c == ',')aceptacion(13);
-			if (c == '+')aceptacion(5);
-			if (c == '-')aceptacion(6);
-			if (c == '*')aceptacion(7);
-			if (c == '/') aceptacion(8);
+			//if (c == ';')Aceptacion(12);
+			//if (c == ',')Aceptacion(13);
+			if (c == '+')Aceptacion(5);
+			if (c == '-')Aceptacion(6);
+			if (c == '*')Aceptacion(7);
+			if (c == '/') Aceptacion(8);
 
 
 
-			if (c == '(')aceptacion(10);
-			if (c == ')') aceptacion(11);
-			if (c == '^') aceptacion(13);
-			//if (c == '{') aceptacion(16);
-			//if (c == '}') aceptacion(17);
+			if (c == '(')Aceptacion(10);
+			if (c == ')') Aceptacion(11);
+			if (c == '^') Aceptacion(13);
+			//if (c == '{') Aceptacion(16);
+			//if (c == '}') Aceptacion(17);
 			if (c == '=') {
 				estado = 9; // este se queda 9
 				simbolo += c;
 			}
 			//else {
-			//	if (c == '$')aceptacion(23);
+			//	if (c == '$')Aceptacion(23);
 			//}
 			break;
 		case 1:
@@ -197,28 +197,28 @@ int lexerAritmetico::sigSimbolo()
 			}
 
 			else {
-				aceptacion(0);
+				Aceptacion(0);
 			}
 			
 			//else if (!esLetra(c) || !esDigito(c)) {
 			//	aux = simbolo;
 			//	if (aux == "int" || aux == "float" || aux == "void") {
-			//		aceptacion(4);
+			//		Aceptacion(4);
 			//	}
 			//	else {
-			//		aceptacion(0);
+			//		Aceptacion(0);
 			//	}
 			//	if (aux == "if") {
-			//		aceptacion(19);
+			//		Aceptacion(19);
 			//	}
 			//	if (aux == "while") {
-			//		aceptacion(20);
+			//		Aceptacion(20);
 			//	}
 			//	if (aux == "return") {
-			//		aceptacion(21);
+			//		Aceptacion(21);
 			//	}
 			//	if (aux == "else") {
-			//		aceptacion(22);
+			//		Aceptacion(22);
 			//	}
 
 
@@ -234,7 +234,7 @@ int lexerAritmetico::sigSimbolo()
 				simbolo += c;
 			}
 			else if (c != '.' || !esDigito(c)) {
-				aceptacion(1);
+				Aceptacion(1);
 			}
 			break;
 		case 3:
@@ -249,15 +249,15 @@ int lexerAritmetico::sigSimbolo()
 				simbolo += c;
 			}
 			else {
-				aceptacion(2);
+				Aceptacion(2);
 			}
 			break;
 		//case 5:
 		//	if (c != '=') {
-		//		aceptacion(7); // 7
+		//		Aceptacion(7); // 7
 		//	}
 		//	else if (c == '=') {
-		//		aceptacion(7); // 7
+		//		Aceptacion(7); // 7
 		//	}
 		//	break;
 
@@ -265,10 +265,10 @@ int lexerAritmetico::sigSimbolo()
 
 		//case 6:
 		//	if (c != '|') {
-		//		aceptacion(23); // este no
+		//		Aceptacion(23); // este no
 		//	}
 		//	else if (c == '|') {
-		//		aceptacion(8); // 8
+		//		Aceptacion(8); // 8
 		//	}
 		//	break;
 
@@ -277,33 +277,33 @@ int lexerAritmetico::sigSimbolo()
 
 		//case 7:
 		//	if (c != '&') {
-		//		aceptacion(23);
+		//		Aceptacion(23);
 		//	}
 		//	else if (c == '&') {
-		//		aceptacion(9);
+		//		Aceptacion(9);
 		//	}
 		//	break;
 
 
 		case 8:
 			//if (c != '=') {
-			//	aceptacion(10);
+			//	Aceptacion(10);
 			//}
 			//else if (c == '=') {
-			//	aceptacion(11);
+			//	Aceptacion(11);
 			//}
 
 			if (c == '=') {
-				aceptacion(9);
+				Aceptacion(9);
 			}
 
 			break;
 		case 9:	//----------->	Si pasa algo feo, fue esto
 			if (c != '=') {
-				aceptacion(12);		
+				Aceptacion(12);		
 			}
 			else if (c == '=') {
-				aceptacion(9);
+				Aceptacion(9);
 			}
 			break;
 		}
@@ -355,7 +355,7 @@ int lexerAritmetico::sigSimbolo()
 		//	tipo = TipoSimbolo::OPNOT;
 		//	break;
 	case 9:
-		tipo = TipoSimbolo::OPIGUALDAD;
+		tipo = TipoSimbolo::Op_Igualdad;
 		break;
 		//case 12:
 		//	tipo = TipoSimbolo::PUNTO_COMA;
@@ -364,10 +364,10 @@ int lexerAritmetico::sigSimbolo()
 		//	tipo = TipoSimbolo::COMA;
 		//	break;
 	case 10:
-		tipo = TipoSimbolo::PARENTESIS_ABRE;
+		tipo = TipoSimbolo::Parentesis_Abre;
 		break;
 	case 11:
-		tipo = TipoSimbolo::PARENTESIS_CIERRA;
+		tipo = TipoSimbolo::Parentesis_Cierra;
 		break;
 		//case 16:
 		//	tipo = TipoSimbolo::LLAVE1;
@@ -376,11 +376,11 @@ int lexerAritmetico::sigSimbolo()
 		//	tipo = TipoSimbolo::LLAVE2;
 		//	break;
 	case 12:
-		tipo = TipoSimbolo::IGUAL;
+		tipo = TipoSimbolo::Igual;
 		break;
 
 	case 13:
-		tipo = TipoSimbolo::POTENCIA;
+		tipo = TipoSimbolo::Potencia;
 		break;
 		//case 19:
 		//	tipo = TipoSimbolo::IF;
@@ -403,22 +403,22 @@ int lexerAritmetico::sigSimbolo()
 	}
 	return tipo;
 }
-char lexerAritmetico::sigCaracter()
+char lexerAritmetico::Siguiente_Caracter()
 {
 	if (terminado()) return '$';  //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
 
 	return fuente[ind++];
 }
-void lexerAritmetico::sigEstado(int estado)
+void lexerAritmetico::Siguiente_Estado(int estado)
 {
 	this->estado = estado;
 	if (estado != 0) {
 		simbolo += c;
 	}
 }
-void lexerAritmetico::aceptacion(int estado)
+void lexerAritmetico::Aceptacion(int estado)
 {
-	sigEstado(estado);
+	Siguiente_Estado(estado);
 	continua = false;
 }
 bool lexerAritmetico::terminado()
@@ -439,7 +439,7 @@ bool lexerAritmetico::esEspacio(char c)
 {
 	return c == ' ' || c == '\t';
 }
-void lexerAritmetico::retroceso()
+void lexerAritmetico::Retroceso()
 {
 	if (c != '$') ind--;   //ACAJNSKAJSNAKJ FIN DEL ARCHIVO
 	continua = false;
