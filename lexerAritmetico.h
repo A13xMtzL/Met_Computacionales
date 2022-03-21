@@ -11,7 +11,7 @@ using namespace std;
 
 class TipoSimbolo {
 public:
-	static const int Error = -1;
+	static const int Error = -1; 
 	static const int Identificador = 0;
 	static const int Entero = 1;
 	static const int Real = 2;
@@ -29,15 +29,20 @@ public:
 	//static const int OPOR = 8;
 	//static const int OPAND = 9;
 	//static const int OPNOT = 10;
-	static const int OPIGUALDAD = 9; // 11
+	static const int Op_Igualdad = 9; // 11
 	//static const int PUNTO_COMA = 12;
 	//static const int COMA = 13;
-	static const int PARENTESIS_ABRE = 10; // 14
-	static const int PARENTESIS_CIERRA = 11; //15
+	static const int Parentesis_Abre = 10; // 14
+	static const int Parentesis_Cierra = 11; //15
 	//static const int LLAVE1 = 16;
 	//static const int LLAVE2 = 17;
-	static const int IGUAL = 12; //18
-	static const int POTENCIA = 13; //18
+	static const int Igual = 12; //18
+	static const int Potencia = 13; //18
+	static const int Comentario = 14; //18
+
+
+
+
 	//static const int IF = 19;
 	//static const int WHILE = 20;
 	//static const int RETURN = 21;
@@ -54,13 +59,15 @@ private:
 	int estado;
 	int cont;
 
-	char sigCaracter();
-	void sigEstado(int estado);
-	void aceptacion(int estado);
 	bool esLetra(char c);
 	bool esDigito(char c);
 	bool esEspacio(char c);
-	void retroceso();
+	
+	char Siguiente_Caracter();
+	void Siguiente_Estado(int estado);
+	
+	void Aceptacion(int estado);
+	void Retroceso();
 
 public:
 	string simbolo;
